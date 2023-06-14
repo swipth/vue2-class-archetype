@@ -13,7 +13,7 @@ module.exports = defineConfig({
     hot: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: "", 
+        target: process.env.VUE_APP_SERVER_URL,
         changeOrigin: true,
         pathRewrite: {
           ["^" + process.env.VUE_APP_BASE_API]: "",
