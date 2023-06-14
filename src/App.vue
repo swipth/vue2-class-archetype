@@ -9,7 +9,7 @@ import en from "ant-design-vue/lib/locale-provider/en_US";
 // @ts-ignore
 import zhCN from "ant-design-vue/es/locale/zh_CN";
 import {Vue, Component} from "vue-property-decorator";
-import {getLanguage} from "@/utils/token";
+import {getLanguage} from "@/utils/clientStorage";
 
 const lang = getLanguage();
 @Component({

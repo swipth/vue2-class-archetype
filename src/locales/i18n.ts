@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 
-import { getLanguage } from "@/utils/token";
+import { getLanguage } from "@/utils/clientStorage";
 
 import messages from "./messages";
 

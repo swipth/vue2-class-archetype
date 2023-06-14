@@ -8,12 +8,12 @@ module.exports = defineConfig({
   devServer: {
     host: "0.0.0.0",
     open: false,
-    port: 8030,
+    port: {{port}},
     https: false,
     hot: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: "https://message.pharmablock.com", //http://172.16.28.143:8003
+        target: "", 
         changeOrigin: true,
         pathRewrite: {
           ["^" + process.env.VUE_APP_BASE_API]: "",

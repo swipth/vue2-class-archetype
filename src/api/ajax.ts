@@ -12,7 +12,7 @@ import {noShowApiMessage} from "@/config/setting";
 import router from "@/router/index";
 import store from "@/store";
 import {AjaxRes} from "@/types/common";
-import {getToken} from "@/utils/token";
+import {getToken} from "@/utils/clientStorage";
 
 NProgress.configure({showSpinner: false});
 

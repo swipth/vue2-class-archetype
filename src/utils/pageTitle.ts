@@ -1,7 +1,7 @@
 import { RouteMeta } from "vue-router";
 
 import { titleReverse, titleSeparator } from "@/config/setting";
-import { getLanguage } from "@/utils/token";
+import { getLanguage } from "@/utils/clientStorage";
 
 /**
  * @description 设置标题

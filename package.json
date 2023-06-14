@@ -1,6 +1,8 @@
 {
-  "name": "ow_vue2_pharmablock",
-  "version": "0.1.0",
+  "name": "{{projectName}}",
+  "version": "{{version}}",
+  "author": "{{author}}",
+  "description": "{{description}}",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
