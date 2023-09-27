@@ -54,7 +54,6 @@ export default class Layout extends Vue {
   collapsed = false;
   selectedKeys: string[] = [];
 
-
   menuClick(item: { key: string }) {
     this.$router.push(item.key);
   }
