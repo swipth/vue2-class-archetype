@@ -9,10 +9,10 @@ commit_id=$(git rev-parse --verify HEAD)
 $(dirname -- "$0")/commit-msg .git/COMMIT_EDITMSG $commit_id
 
 # 格式化代码
-npm run lint
+#npm run lint
 
 # 在执行 git add 命令之前，先执行你的脚本或命令
-node "./version/update-number.js"
+#node "./version/update-number.js"
 
 # 执行 git add 命令
 # git add .
