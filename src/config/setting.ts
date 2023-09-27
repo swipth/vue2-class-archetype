@@ -22,7 +22,7 @@ export const errorEnv = "development";
 export const officeWebsite = "https://www.pharmablock.com";
 
 // 项目key
-export const apikey = "_admin";
+export const apikey = {{key}}"_admin";
 
 // 令牌信息
 export const tokenName = apikey + "_token";
