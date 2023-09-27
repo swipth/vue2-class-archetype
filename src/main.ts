@@ -6,6 +6,7 @@ import router from "./router";
 import store from "./store";
 import i18n from "@/locales/i18n";
 import "./plugins";
+import "./router/guard"
 import "ant-design-vue/dist/antd.css";
 import "./styles/index.less";
 

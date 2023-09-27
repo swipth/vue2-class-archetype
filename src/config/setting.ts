@@ -51,5 +51,7 @@ export const EMAIL_CHINA = "sales_china@pharmablock.com";
 
 export const EMAIL_US = "salesusa@pharmablock.com";
 
+// 是否打开版本更新弹框提示给用户
+export const showVersionModal = false;
 // 控制哪些接口不走统一消息提醒
 export const noShowApiMessage = ["/api/base/v1/simplelogin", "/api/base/v1/phonelogin", "/api/base/v1/user/register"];

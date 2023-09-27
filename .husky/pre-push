@@ -1,0 +1,16 @@
+#!/bin/sh
+
+while read local_ref local_sha remote_ref remote_sha
+do
+  # 检查提交的文件中是否包含 package.json
+  has_package_json=$(git diff --name-only --diff-filter=ACMRTUXB $local_sha $remote_sha | grep -c "package.json")
+
+  # 如果不包含 package.json，拒绝推送 提交中缺少 package.json 文件
+  if [ $has_package_json -eq 0 ]; then
+    echo "推送被拒绝：commit 指令禁止使用 --no-verify 请编辑代码重新commit"
+    echo "开发人员请遵守药石前端开发规范！"
+    exit 1
+  fi
+done
+
+exit 0

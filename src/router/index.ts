@@ -1,16 +1,44 @@
 import Vue from "vue";
-import VueRouter, {RouteConfig} from "vue-router";
+import AdminLayout from "@/views/admin/AdminLayout.vue";
+import VueRouter, { RawLocation, RouteConfig } from "vue-router";
+import { ErrorHandler } from "vue-router/types/router";
 
+const originPush: any = VueRouter.prototype.push;
+const originReplace: any = VueRouter.prototype.replace;
 Vue.use(VueRouter);
-const routes: Array<RouteConfig> = [
-  // {
-  //   path: "/",
-  //   redirect: "/workbench"
-  // },
+// @ts-ignore
+VueRouter.prototype.push = function (location: RawLocation, resolve?: () => void, reject?: ErrorHandler | undefined) {
+  if (resolve && reject) {
+    originPush.call(this, location, resolve, reject);
+  } else
+    originPush.call(
+      this,
+      location,
+      () => {},
+      () => {}
+    );
+};
+// @ts-ignore
+VueRouter.prototype.push = function (location: RawLocation, resolve?: () => void, reject?: ErrorHandler | undefined) {
+  if (resolve && reject) {
+    originReplace.call(this, location, resolve, reject);
+  } else
+    originReplace.call(
+      this,
+      location,
+      () => {},
+      () => {}
+    );
+};
+const commonRoutes: Array<RouteConfig> = [
+  {
+    path: "/",
+    redirect: "/workbench"
+  },
   {
     path: "/workbench",
     name: "Workbench",
-    component: () => import("./../views/admin/Workbench.vue"),
+    component: () => import("../views/admin/portal/Workbench.vue"),
   },
   {
     path: "/exception",
@@ -40,8 +68,24 @@ const routes: Array<RouteConfig> = [
     redirect: "/404",
   },
 ];
+const devRoutes = [
+  {
+    path: "",
+    name: "Admin",
+    component: AdminLayout,
+    children: commonRoutes,
+  },
+];
+
+export let routes: Array<RouteConfig> = [];
+// @ts-ignore
+if (process.env.NODE_ENV === "development" && !window.__POWERED_BY_WUJIE__) {
+  routes = [...devRoutes];
+} else {
+  routes = [...commonRoutes];
+}
 const router = new VueRouter({
-  mode: "hash",
+  mode: "history",
   base: process.env.BASE_URL,
   routes,
 });
