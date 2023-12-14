@@ -14,9 +14,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import { Vue } from "vue-property-decorator";
-@Component({
-  components: {},
-})
+@Component({})
 export default class Page404 extends Vue {
   toHome() {
     this.$router.replace("/");

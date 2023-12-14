@@ -7,8 +7,8 @@
     <a-layout class="components-layout-demo-custom-trigger h100">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible theme="light">
         <div class="logo">
-          <img v-if="!collapsed" src="./../../assets/images/logo/logo_admin.png" />
-          <img v-else src="./../../assets/images/logo/logo.png" width="50" height="50" />
+          <img v-if="!collapsed" src="../assets/images/logo/logo_admin.png" />
+          <img v-else src="../assets/images/logo/logo.png" width="50" height="50" />
         </div>
         <a-menu theme="light" mode="inline" :selectedKeys="selectedKeys" @click="menuClick">
           <a-menu-item key="/workbench">

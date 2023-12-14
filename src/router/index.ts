@@ -1,7 +1,7 @@
 import Vue from "vue";
-import AdminLayout from "@/views/admin/AdminLayout.vue";
-import VueRouter, { RawLocation, RouteConfig } from "vue-router";
-import { ErrorHandler } from "vue-router/types/router";
+import AdminLayout from "@/layouts/CommonLayout.vue";
+import VueRouter, {RawLocation, RouteConfig} from "vue-router";
+import {ErrorHandler} from "vue-router/types/router";
 
 const originPush: any = VueRouter.prototype.push;
 const originReplace: any = VueRouter.prototype.replace;
@@ -14,8 +14,10 @@ VueRouter.prototype.push = function (location: RawLocation, resolve?: () => void
     originPush.call(
       this,
       location,
-      () => {},
-      () => {}
+      () => {
+      },
+      () => {
+      }
     );
 };
 // @ts-ignore
@@ -26,8 +28,10 @@ VueRouter.prototype.push = function (location: RawLocation, resolve?: () => void
     originReplace.call(
       this,
       location,
-      () => {},
-      () => {}
+      () => {
+      },
+      () => {
+      }
     );
 };
 const commonRoutes: Array<RouteConfig> = [
@@ -77,13 +81,8 @@ const devRoutes = [
   },
 ];
 
-export let routes: Array<RouteConfig> = [];
-// @ts-ignore
-if (process.env.NODE_ENV === "development" && !window.__POWERED_BY_WUJIE__) {
-  routes = [...devRoutes];
-} else {
-  routes = [...commonRoutes];
-}
+export const routes = !window.__POWERED_BY_WUJIE__ ? devRoutes : commonRoutes;
+
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,

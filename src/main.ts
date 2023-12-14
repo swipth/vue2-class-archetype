@@ -1,4 +1,3 @@
-// @ts-nocheck
 import "babel-polyfill";
 import Vue from "vue";
 import App from "./App.vue";
@@ -15,7 +14,7 @@ Vue.config.productionTip = false;
 import "./registerServiceWorker";
 
 if (window.__POWERED_BY_WUJIE__) {
-  let instance;
+  let instance:any;
   window.__WUJIE_MOUNT = () => {
     instance = new Vue({
       router,

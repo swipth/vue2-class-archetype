@@ -5,13 +5,13 @@
  *  export const downloadExcel = ajaxDownload("/stock/excel/total/data",{time: this.selectedTime})
  *  downloadExcel()
  */
-import { Modal } from "ant-design-vue";
-import { ModalConfirm } from "ant-design-vue/types/modal";
-import axios, { AxiosResponse, Method } from "axios";
+import {ModalConfirm} from "ant-design-vue/types/modal";
+import axios, {AxiosResponse, Method} from "axios";
 import NProgress from "nprogress";
 import i18n from "@/locales/i18n";
-import { AjaxRes } from "@/types/common";
-import { messageName } from "@/config/network";
+import {AjaxRes} from "@/types/common";
+import {showErrorModal, showInfoModal} from "@/api/tip";
+import {networkKey} from "@/api/config/network";
 
 let modal: ModalConfirm;
 /**
@@ -37,16 +37,16 @@ export const ajaxDownload = (url: string, params: Record<string, unknown> = {}, 
         if (typeof error === "object") {
           if (error.type) {
             if (error.type === 404) {
-              Modal.error({ content: "服务端找不到文件", centered: true });
+              showErrorModal("服务端找不到文件");
             }
             if (error.response) {
               if (error.response.status === 404) {
-                Modal.error({ content: "服务端找不到文件", centered: true });
+                showErrorModal("服务端找不到文件");
               } else {
-                Modal.error({ content: "文件下载失败了", centered: true });
+                showErrorModal("文件下载失败了");
               }
             } else {
-              Modal.error({ content: "文件内容解析失败", centered: true });
+              showErrorModal("文件内容解析失败");
             }
           }
           reject(error);
@@ -56,7 +56,7 @@ export const ajaxDownload = (url: string, params: Record<string, unknown> = {}, 
 };
 
 const fileDownload = (url: string, params: Record<string, unknown>, method: Method, data: Record<string, unknown>) => {
-  modal = Modal.info({ title: i18n.t("文件下载"), content: i18n.t("开始下载"), centered: true, okText: i18n.t("关闭") as string });
+  modal = showInfoModal({title: i18n.t("文件下载") as string, content: i18n.t("开始下载") as string, okText: i18n.t("关闭") as string});
   // tips: 这里直接返回的是response整体!
   return axios({
     url,
@@ -74,7 +74,7 @@ const fileDownload = (url: string, params: Record<string, unknown>, method: Meth
         // 对原生进度事件的处理
         // parseInt((e.loaded / e.total) * 100) };
         // 下载完成
-        modal.update({ content: i18n.t("当前文件下载进度") + "：" + ((e.loaded / e.total) * 100).toFixed(2) + "%" });
+        modal.update({content: i18n.t("当前文件下载进度") + "：" + ((e.loaded / e.total) * 100).toFixed(2) + "%"});
         if (e.loaded === e.total) {
           NProgress.set(e.loaded / e.total);
           modal.destroy();
@@ -91,10 +91,8 @@ const convertRes2Blob = async (response: AxiosResponse, name?: string) => {
   let fileName = "";
   const responseJson: AjaxRes = await blobToObj(response.data);
   if (!responseJson.success) {
-    Modal.error({
-      title: i18n.t("接口温馨提醒"),
-      content: responseJson[messageName] as string,
-    });
+    //@ts-ignore
+    showErrorModal(responseJson[networkKey.messageName]);
     modal.destroy();
     NProgress.done();
     return;
@@ -193,13 +191,23 @@ export const blobToObj = (data: Blob): Promise<AjaxRes> => {
       try {
         resolve(JSON.parse(reader.result as string));
       } catch (error) {
-        resolve({
-          code: 200,
-          success: true,
-          data: null,
-          message: "当前信息为数据流信息，接口正常",
-          timestamp: "2023-10-06",
-        });
+        if (typeof reader.result === "string" && (reader.result as string).includes("不存在"))
+          resolve({
+            code: 500,
+            success: false,
+            data: null,
+            message: (reader.result as string) || "The file does not exist",
+            // message: i18n.t("下载失败") as string,
+            timestamp: "2023-10-06",
+          });
+        else
+          resolve({
+            code: 200,
+            success: true,
+            data: null,
+            message: "数据流返回正常",
+            timestamp: "",
+          });
       }
     };
   });

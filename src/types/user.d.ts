@@ -106,27 +106,3 @@ export interface UserInfoDataType {
     userId: string;
   };
 }
-
-export interface CustomerDataType {
-  axRate: number;
-  byRateLess500: number;
-  // eslint-disable-next-line camelcase
-  byRateLess500_BackOrder: number;
-  byRatemore500: number;
-  // eslint-disable-next-line camelcase
-  byRatemore500_BackOrder: number;
-  customerId: number;
-  czRate: number;
-  discount: number;
-  isCreditAccount: number;
-  id: number;
-  isFreeTax: number;
-  status: number;
-  webDiscount: number;
-  country: string;
-  customerCode: string;
-  region: string;
-  freeTaxPlaces: string;
-  customerName: string;
-  isDealer: boolean;
-}

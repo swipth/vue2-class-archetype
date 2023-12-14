@@ -11,7 +11,7 @@ import en from "ant-design-vue/lib/locale-provider/en_US";
 // @ts-ignore
 import zhCN from "ant-design-vue/es/locale/zh_CN";
 import {Vue, Component} from "vue-property-decorator";
-import {getLanguage} from "@/utils/clientStorage";
+import {getLanguage} from "@/config/clientStorage";
 
 const lang = getLanguage();
 @Component({
@@ -19,7 +19,6 @@ const lang = getLanguage();
   watch: {
     // 在 vue2-sub 路由下主动告知主应用路由跳转，主应用也跳到相应路由高亮菜单栏
     $route() {
-      // @ts-ignore
       window.$wujie?.bus.$emit("sub-route-change", "{{key}}", this.$route.path);
     },
   },
@@ -29,7 +28,6 @@ export default class Layout extends Vue {
     return lang === "zh" ? zhCN : en;
   }
   get inner() {
-    // @ts-ignore
     return window.__POWERED_BY_WUJIE__;
   }
 }
