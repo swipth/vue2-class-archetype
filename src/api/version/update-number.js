@@ -21,7 +21,7 @@ let newVersionLastNum = Number(currentVersion.split('.')[2])
 // 版本号自增
 newVersionLastNum++
 // 设置新版本号
-let versionArray = currentVersion.split('.')
+const versionArray = currentVersion.split('.')
 versionArray.splice(2, 1, newVersionLastNum)
 const newVersion = versionArray.join('.');
 

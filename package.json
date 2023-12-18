@@ -7,8 +7,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:test": "env-cmd -f .env.test vue-cli-service build && env-cmd -f .env.test node ./version/update.js",
-    "build:prod": "env-cmd -f .env.production vue-cli-service build && env-cmd -f .env.production node ./version/update.js",
+    "build:test": "env-cmd -f .env.test vue-cli-service build && env-cmd -f .env.test node src/api/version/update.js",
+    "build:prod": "env-cmd -f .env.production vue-cli-service build && env-cmd -f .env.production node src/api/version/update.js",
     "test:unit": "vue-cli-service test:unit",
     "lint:ts": "vue-cli-service lint",
     "lint:stylelint": "stylelint {src,mock}/**/*.{css,less,sass,scss,vue} --fix",
