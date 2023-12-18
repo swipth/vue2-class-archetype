@@ -9,7 +9,7 @@ import {ModalConfirm} from "ant-design-vue/types/modal";
 import axios, {AxiosResponse, Method} from "axios";
 import NProgress from "nprogress";
 import i18n from "@/locales/i18n";
-import {AjaxRes} from "@/types/common";
+import {AjaxRes} from "@/types/common/apiResponse";
 import {showErrorModal, showInfoModal} from "@/api/tip";
 import {networkKey} from "@/api/config/network";
 

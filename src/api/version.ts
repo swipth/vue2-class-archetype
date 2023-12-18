@@ -4,7 +4,7 @@ import {ajax} from "@/api/ajax";
 export const checkVersion = () => ajax({ url: process.env.VUE_APP_BASE_URL + "static/version.json", method: "GET", baseURL: "/" });
 const { currentVersion } = require("../../version/info");
 import { Modal } from "ant-design-vue";
-import { AjaxRes } from "@/types/common";
+import { AjaxRes } from "@/types/common/apiResponse";
 import i18n from "@/locales/i18n";
 
 // 是否显示弹框提示刷新

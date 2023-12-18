@@ -19,7 +19,7 @@ module.exports = {
     "block-scoped-var": 2, //块语句中使用var
     camelcase: 2,
     "no-multiple-empty-lines": [1, { max: 1 }],
-    "no-unused-vars": [2, { vars: "all", args: "after-used" }],
+    "no-unused-vars": [1, { vars: "all", args: "after-used" }],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "prettier/prettier": "off",
@@ -29,8 +29,6 @@ module.exports = {
     "no-var": 2,
     "no-undef": 2,
     strict: 2,
-    "simple-import-sort/imports": "off",//error
-    "simple-import-sort/exports": "off"
   },
   overrides: [
     {
