@@ -690,7 +690,7 @@ export default {
 
   //=======================后端接口提示=======================
   接口温馨提醒: "Notice",
-  接口发生异常: "Exception occurred when calling the interface!",
+  接口发生异常: "Exception occurred when calling the modules!",
   操作成功: "Operation succeeded!",
   数据不存在: "Data does not exist!",
   "验证码错误.": "Verification code error!",
