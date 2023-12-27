@@ -26,8 +26,14 @@ export const networkKey = {
   dataName: "data",
   // 后台哪些api接口不走消息提示
   noShowApiMessage: [""],
+  // 后台登录接口
+  loginInterfacePath: "/auth/login",
   // 登录地址
   loginPath:"/auth/login",
+  // 服务端响应头返回token字段名称
+  InterfaceToken:"InterfaceToken",
+  // 请求头令牌字段
+  Authorization:"Authorization",
   // 消息框消失时间
   messageDuration:3000,
   // 用户静默退出时间
