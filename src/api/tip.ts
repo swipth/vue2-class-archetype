@@ -17,6 +17,11 @@ const showMessage = (content: string, type = "error") => {
 const showErrorModal = (content: string | TranslateResult) => {
   Modal.error({content, centered: true, title: "Error",})
 }
+
+const showInfoModal=(config: { title: string; content: string; okText: string }) => {
+  return Modal.info({content: config, centered: true, title: config.title, okText: config.okText});
+}
+
 export const handleAxiosResponseAction = {
   // 获取登录令牌
   getToken: (): string => getToken(),
@@ -52,6 +57,7 @@ export const handleAxiosResponseAction = {
    * @param content
    */
   showErrorModal,
+  showInfoModal,
   /**
    * 处理异常响应错误
    * @param response

@@ -8,7 +8,7 @@ import axios, {AxiosError, AxiosResponse, Method} from "axios";
 import NProgress from "nprogress";
 import i18n from "@/locales/i18n";
 import {ModalConfirm} from "ant-design-vue/types/modal";
-import {showErrorModal, showInfoModal} from "@/api/tip";
+import {handleAxiosResponseAction} from "@/api/tip";
 import {Modal} from "ant-design-vue";
 
 let modal: ModalConfirm;
@@ -24,7 +24,7 @@ export const ajaxUpload = (url: string, file: File, method: Method = "PUT") => {
   formData.append("file", file);
   return new Promise((resolve, reject) => {
     NProgress.start();
-    if (file.size > 10 * 1024 * 1024) modal = showInfoModal({title: i18n.t("文件上传") as string, content: i18n.t("开始上传") as string, okText: i18n.t("关闭") as string});
+    if (file.size > 10 * 1024 * 1024) modal = handleAxiosResponseAction.showInfoModal({title: i18n.t("文件上传") as string, content: i18n.t("开始上传") as string, okText: i18n.t("关闭") as string});
     axios({
       url,
       method,
@@ -52,7 +52,7 @@ export const ajaxUpload = (url: string, file: File, method: Method = "PUT") => {
         Modal.destroyAll();
         // modal.destroy();
         reject(err);
-        showErrorModal(i18n.t("文件上传失败"));
+        handleAxiosResponseAction.showErrorModal(i18n.t("文件上传失败"));
       });
   });
 };
