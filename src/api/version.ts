@@ -2,7 +2,7 @@
 import {ajax} from "@/api/ajax";
 
 export const checkVersion = () => ajax({ url: process.env.VUE_APP_BASE_URL + "static/version.json", method: "GET", baseURL: "/" });
-const { currentVersion } = require("@/api/version/info.js");
+const { currentVersion } = require("../../version/info.js");
 import { Modal } from "ant-design-vue";
 import { AjaxRes } from "@/types/common/apiResponse";
 import i18n from "@/locales/i18n";

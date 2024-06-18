@@ -10,3 +10,6 @@ router.beforeEach((to: Route, from: Route, next: () => void) => {
 router.afterEach(() => {
   NProgress.done(); // 结束Progress
 });
+router.onError(() => {
+  versionCheck();
+})
